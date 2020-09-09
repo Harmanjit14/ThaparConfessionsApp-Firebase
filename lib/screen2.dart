@@ -22,6 +22,7 @@ class _Screen2State extends State<Screen2> {
           } catch (e) {
             print(e);
           }
+          Navigator.pop(context);
         },
         backgroundColor: Colors.amber[600],
         child: Icon(
