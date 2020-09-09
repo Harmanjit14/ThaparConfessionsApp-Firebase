@@ -16,13 +16,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
       //backgroundColor: Colors.grey[200],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('working');
+          Navigator.pushNamed(context, '/2');
         },
         child: Icon(
           Icons.add,
           //color: Colors.grey[200],
         ),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amber[600],
         splashColor: Colors.yellow,
       ),
       appBar: AppBar(
@@ -56,10 +56,9 @@ class _PageBodyState extends State<PageBody> {
         children: [
           StreamBuilder<QuerySnapshot>(
             stream: firestore.collection('confessions').snapshots(),
-            // ignore: missing_return
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final text = snapshot.data.docs;
+                final text = snapshot.data.docs.reversed;
                 List<Widget> allConf = [];
                 for (var confession in text) {
                   final message = confession.get('text');
@@ -70,11 +69,13 @@ class _PageBodyState extends State<PageBody> {
                 }
                 return Expanded(
                   child: ListView(
+                    addRepaintBoundaries: true,
                     shrinkWrap: true,
                     children: allConf,
                   ),
                 );
               }
+              else return Container();
             },
           ),
         ],
