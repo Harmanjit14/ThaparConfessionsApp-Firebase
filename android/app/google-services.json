@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1038497044712",
+    "firebase_url": "https://thaparconfessions-7477a.firebaseio.com",
+    "project_id": "thaparconfessions-7477a",
+    "storage_bucket": "thaparconfessions-7477a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038497044712:android:0805f1563e1fca8cb1115d",
+        "android_client_info": {
+          "package_name": "com.example.TC"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038497044712-p3jtn8jdfephbii99shkc4e86up10lg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0H1qPl3dvnsy-IZiKC2Bkl5Xfhrh3_jI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038497044712-p3jtn8jdfephbii99shkc4e86up10lg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
