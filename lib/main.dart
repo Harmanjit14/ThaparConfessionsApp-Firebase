@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xff364051),
         primaryColor: Colors.black,  
       ),
-     initialRoute: '/1',
+     initialRoute: '/',
       routes: {
         '/' : (context)=>InitialScreen(),
         '/1' : (context)=>LoadingScreen(),
