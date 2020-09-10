@@ -30,14 +30,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
 }
 
 class PageBody extends StatefulWidget {
+  var streamData;
+  PageBody() {
+    final firestore = FirebaseFirestore.instance;
+
+    streamData = firestore.collection('confessions').orderBy("time").snapshots();
+  }
+
   @override
   _PageBodyState createState() => _PageBodyState();
 }
 
 class _PageBodyState extends State<PageBody> {
-  var snapshot;
-  final firestore = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,8 +74,8 @@ class _PageBodyState extends State<PageBody> {
                     child: Column(
                       children: [
                         StreamBuilder<QuerySnapshot>(
-                          stream:
-                              firestore.collection('confessions').snapshots(),
+                          stream: widget.streamData,
+                          //firestore.collection('confessions').snapshots(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               final text = snapshot.data.docs;
@@ -143,7 +147,6 @@ class ConfData extends StatelessWidget {
       case 3:
         useCol = color3;
         break;
-      
     }
     a = (a + 1) % 4;
   }
