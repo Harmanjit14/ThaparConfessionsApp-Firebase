@@ -1,3 +1,4 @@
+import 'package:TC/initialscreen.dart';
 import 'package:TC/screen1.dart';
 import 'package:TC/screen2.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +8,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ThaparConfessions',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[400],
-        primaryColor: Colors.black,
+        scaffoldBackgroundColor: Color(0xff364051),
+        primaryColor: Colors.black,  
       ),
-     initialRoute: '/',
+     initialRoute: '/1',
       routes: {
-        '/' : (context)=>LoadingScreen(),
+        '/' : (context)=>InitialScreen(),
+        '/1' : (context)=>LoadingScreen(),
         '/2' : (context)=>Screen2(),
 
       },

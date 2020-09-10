@@ -12,32 +12,13 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final obj = FirebaseFirestore.instance;
-          try {
-            await obj.collection('confessions').add({
-              'text': confess,
-            });
-          } catch (e) {
-            print(e);
-          }
-          Navigator.pop(context);
-        },
-        backgroundColor: Colors.amber[600],
-        child: Icon(
-          Icons.check,
-          color: Colors.grey[300],
-        ),
-        splashColor: Colors.greenAccent,
-      ),
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 10,
         centerTitle: true,
         title: Text(
           'Thapar Confessions',
-          style: TextStyle(fontFamily: 'Pacifico', fontSize: 25),
+          style: TextStyle(fontFamily: 'Pacifico', fontSize: 25,color: Color(0xffe0e0e0),),
         ),
       ),
       body: Container(
@@ -54,38 +35,73 @@ class ConContainer extends StatefulWidget {
 }
 
 class _ConContainerState extends State<ConContainer> {
+  final snackBar = SnackBar(
+    duration: Duration(seconds:5),
+    content: Text('Confession Added!!'),
+  );
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    confess = value;
-                  });
-                },
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                textAlign: TextAlign.start,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  labelStyle: TextStyle(
-                      fontSize: 20, fontFamily: 'Pacifico', letterSpacing: 2),
-                  labelText: 'Write your confession',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                ),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: TextField(
+              onChanged: (value) {
+                setState(() {
+                  confess = value;
+                });
+              },
+              style: TextStyle(
+                fontSize: 18,
+                color: Color(0xffe0e0e0),
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              textAlign: TextAlign.start,
+              autocorrect: false,
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                labelStyle: TextStyle(
+                    fontSize: 20, fontFamily: 'Pacifico', letterSpacing: 2,color: Color(0xffe0e0e0),),
+                labelText: 'Write your confession',
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
               ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              onPressed: () async {
+                var tem;
+                final obj = FirebaseFirestore.instance;
+                try {
+                  if (confess != "") {
+                    await obj.collection('confessions').add({
+                      'text': confess,
+                    });
+                    confess = "";
+                  }
+                } catch (e) {
+                  tem = e;
+                }
+                if (tem == null) {
+                  //Scaffold.of(context).showSnackBar(snackBar);
+                }
+                Navigator.pop(context);
+              },
+              backgroundColor: Colors.amber[600],
+              child: Icon(
+                Icons.check,
+                color: Colors.grey[300],
+              ),
+              splashColor: Colors.yellow,
+            ),
+          )
+        ],
       ),
     );
   }
