@@ -34,7 +34,7 @@ class PageBody extends StatefulWidget {
   PageBody() {
     final firestore = FirebaseFirestore.instance;
 
-    streamData = firestore.collection('confessions').orderBy("time").snapshots();
+    streamData = firestore.collection('confessions').orderBy("time").limit(50).snapshots();
   }
 
   @override
